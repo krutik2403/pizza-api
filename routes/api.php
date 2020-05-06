@@ -16,5 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', 'LoginController@login');
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('/products', 'ProductController@index');
+    Route::resource('/products', 'ProductController')->only(['index', 'show']);
+    Route::resource('/orders', 'OrderController')->only(['index', 'store', 'show']);
 });
